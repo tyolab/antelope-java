@@ -2,7 +2,7 @@ package au.com.tyo.antelope;
 
 import java.util.List;
 
-public class AntelopeSearch {
+public class AntelopeSearchResult {
 
     /**
      * Total hits
@@ -26,9 +26,9 @@ public class AntelopeSearch {
 
     /**
      */
-    List results;
+    List list;
 
-    public AntelopeSearch(long total, long time, long page, long size) {
+    public AntelopeSearchResult(long total, long time, long page, long size) {
         this.total = total;
         this.time = time;
         this.page = page;
@@ -67,11 +67,11 @@ public class AntelopeSearch {
         this.size = size;
     }
 
-    public List getResults() {
-        return results;
+    public List getList() {
+        return list;
     }
 
-    public void setResults(List results) {
-        this.results = results;
+    public void setList(List list) {
+        this.list = list;
     }
 }

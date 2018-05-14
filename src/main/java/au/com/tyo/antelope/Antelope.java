@@ -56,7 +56,7 @@ public class Antelope {
             server.goto_result(index);
 
         // server.result_to_outchannel();
-        AntelopeSearch searchResult = new AntelopeSearch(hits, page, size, server.get_search_time());
+        AntelopeSearchResult searchResult = new AntelopeSearchResult(hits, page, size, server.get_search_time());
         String results = null;
 
         if (needdata) {
@@ -74,15 +74,15 @@ public class Antelope {
                 }
 
                 if (null != obj) {
-                    if (searchResult.results == null)
-                        searchResult.results = new ArrayList();
+                    if (searchResult.list == null)
+                        searchResult.list = new ArrayList();
 
                     if (loadContent) {
                         String doc = server.load_document();
                         obj.doc = (doc);
                     }
 
-                    searchResult.results.add(obj);
+                    searchResult.list.add(obj);
                 }
 
                 ret = server.next_result();

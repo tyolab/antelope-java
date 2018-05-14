@@ -13,4 +13,8 @@ public class AntelopeDoc {
     String document_name;
 
     String doc;
+
+    public String toString() {
+        return "rank: " + rank + ", " + "name: " + document_name + ", " + "id: " + docid + ", " + "rsv: " + rsv;
+    }
 }

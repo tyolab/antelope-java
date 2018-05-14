@@ -61,9 +61,7 @@ public class AntelopeRemoteClient {
 		
 		double rsv;
 		
-		public String toString() {
-			return "rank: " + rank + ", " + "name: " + name + ", " + "id: " + id + ", " + "rsv: " + rsv;
-		}
+
 	}
 
 	public AntelopeRemoteClient() {
