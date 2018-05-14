@@ -157,6 +157,11 @@ public class ATIRE_API_server {
     return AntelopeJNI.ATIRE_API_server_result_to_json(swigCPtr, this);
   }
 
+  public SWIGTYPE_p_ATIRE_API_result get_result() {
+    long cPtr = AntelopeJNI.ATIRE_API_server_get_result(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_ATIRE_API_result(cPtr, false);
+  }
+
   public int next_result() {
     return AntelopeJNI.ATIRE_API_server_next_result(swigCPtr, this);
   }
@@ -171,6 +176,10 @@ public class ATIRE_API_server {
 
   public String load_document() {
     return AntelopeJNI.ATIRE_API_server_load_document(swigCPtr, this);
+  }
+
+  public String get_document(int docid) {
+    return AntelopeJNI.ATIRE_API_server_get_document(swigCPtr, this, docid);
   }
 
   public String get_current_document() {

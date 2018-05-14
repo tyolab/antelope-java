@@ -56,10 +56,12 @@ public class AntelopeJNI {
   public final static native int ATIRE_API_server_search__SWIG_1(long jarg1, ATIRE_API_server jarg1_);
   public final static native void ATIRE_API_server_goto_result(long jarg1, ATIRE_API_server jarg1_, int jarg2);
   public final static native String ATIRE_API_server_result_to_json(long jarg1, ATIRE_API_server jarg1_);
+  public final static native long ATIRE_API_server_get_result(long jarg1, ATIRE_API_server jarg1_);
   public final static native int ATIRE_API_server_next_result(long jarg1, ATIRE_API_server jarg1_);
   public final static native void ATIRE_API_server_result_to_outchannel__SWIG_0(long jarg1, ATIRE_API_server jarg1_, int jarg2);
   public final static native void ATIRE_API_server_result_to_outchannel__SWIG_1(long jarg1, ATIRE_API_server jarg1_);
   public final static native String ATIRE_API_server_load_document(long jarg1, ATIRE_API_server jarg1_);
+  public final static native String ATIRE_API_server_get_document(long jarg1, ATIRE_API_server jarg1_, int jarg2);
   public final static native String ATIRE_API_server_get_current_document(long jarg1, ATIRE_API_server jarg1_);
   public final static native void ATIRE_indexer_EMPTY_DOCUMENT_CONTENT_set(String jarg1);
   public final static native String ATIRE_indexer_EMPTY_DOCUMENT_CONTENT_get();
