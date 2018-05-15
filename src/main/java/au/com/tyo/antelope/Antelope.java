@@ -99,4 +99,9 @@ public class Antelope {
     public String loadDocument(int docid) {
         return server.get_document(docid);
     }
+
+    public void sendCommand(String cmd) {
+        server.insert_command(cmd);
+        server.process_command();
+    }
 }
