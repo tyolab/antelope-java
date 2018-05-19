@@ -352,19 +352,9 @@ public class AntelopeRemoteClient {
 					    try {
 					    	results = atire.search(fromUser);
 					    }
-					    catch (ConnectException connEx) {
+					    catch (SocketException connEx) {
 					    	System.err.println(connEx.getMessage());
-					    	atire.initializeSocket();
-					    	
-					    	try {
-					    		results = atire.search(fromUser);
-					    	}
-					    	 catch (ConnectException connEx2) {
-					    		 System.err.println("re-attempt connection failed");
-					    		 System.exit(-1);
-					    	 }
-					    }
-					    catch (SocketException socketEx) {
+
 					    	atire.initializeSocket();
 					    	
 					    	try {

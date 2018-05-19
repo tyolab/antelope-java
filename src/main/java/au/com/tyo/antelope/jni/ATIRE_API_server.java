@@ -141,6 +141,10 @@ public class ATIRE_API_server {
     AntelopeJNI.ATIRE_API_server_set_outchannel(swigCPtr, this, type);
   }
 
+  public String get_outchannel_content() {
+    return AntelopeJNI.ATIRE_API_server_get_outchannel_content(swigCPtr, this);
+  }
+
   public int search(String query) {
     return AntelopeJNI.ATIRE_API_server_search__SWIG_0(swigCPtr, this, query);
   }
@@ -186,8 +190,97 @@ public class ATIRE_API_server {
     return AntelopeJNI.ATIRE_API_server_get_current_document(swigCPtr, this);
   }
 
-  public final static int CHANNEL_FILE = AntelopeJNI.ATIRE_API_server_CHANNEL_FILE_get();
-  public final static int CHANNEL_SOCKET = AntelopeJNI.ATIRE_API_server_CHANNEL_SOCKET_get();
-  public final static int CHANNEL_STREAM = AntelopeJNI.ATIRE_API_server_CHANNEL_STREAM_get();
+  public void set_output_format(int format) {
+    AntelopeJNI.ATIRE_API_server_set_output_format(swigCPtr, this, format);
+  }
+
+  public final static class ATIRE_channel_type {
+    public final static ATIRE_API_server.ATIRE_channel_type CHANNEL_FILE = new ATIRE_API_server.ATIRE_channel_type("CHANNEL_FILE");
+    public final static ATIRE_API_server.ATIRE_channel_type CHANNEL_SOCKET = new ATIRE_API_server.ATIRE_channel_type("CHANNEL_SOCKET");
+    public final static ATIRE_API_server.ATIRE_channel_type CHANNEL_MEMORY = new ATIRE_API_server.ATIRE_channel_type("CHANNEL_MEMORY");
+
+    public final int swigValue() {
+      return swigValue;
+    }
+
+    public String toString() {
+      return swigName;
+    }
+
+    public static ATIRE_channel_type swigToEnum(int swigValue) {
+      if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+        return swigValues[swigValue];
+      for (int i = 0; i < swigValues.length; i++)
+        if (swigValues[i].swigValue == swigValue)
+          return swigValues[i];
+      throw new IllegalArgumentException("No enum " + ATIRE_channel_type.class + " with value " + swigValue);
+    }
+
+    private ATIRE_channel_type(String swigName) {
+      this.swigName = swigName;
+      this.swigValue = swigNext++;
+    }
+
+    private ATIRE_channel_type(String swigName, int swigValue) {
+      this.swigName = swigName;
+      this.swigValue = swigValue;
+      swigNext = swigValue+1;
+    }
+
+    private ATIRE_channel_type(String swigName, ATIRE_channel_type swigEnum) {
+      this.swigName = swigName;
+      this.swigValue = swigEnum.swigValue;
+      swigNext = this.swigValue+1;
+    }
+
+    private static ATIRE_channel_type[] swigValues = { CHANNEL_FILE, CHANNEL_SOCKET, CHANNEL_MEMORY };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
+  }
+
+  public final static class ATIRE_output_format {
+    public final static ATIRE_API_server.ATIRE_output_format XML = new ATIRE_API_server.ATIRE_output_format("XML", AntelopeJNI.ATIRE_API_server_XML_get());
+    public final static ATIRE_API_server.ATIRE_output_format JSON = new ATIRE_API_server.ATIRE_output_format("JSON", AntelopeJNI.ATIRE_API_server_JSON_get());
+
+    public final int swigValue() {
+      return swigValue;
+    }
+
+    public String toString() {
+      return swigName;
+    }
+
+    public static ATIRE_output_format swigToEnum(int swigValue) {
+      if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+        return swigValues[swigValue];
+      for (int i = 0; i < swigValues.length; i++)
+        if (swigValues[i].swigValue == swigValue)
+          return swigValues[i];
+      throw new IllegalArgumentException("No enum " + ATIRE_output_format.class + " with value " + swigValue);
+    }
+
+    private ATIRE_output_format(String swigName) {
+      this.swigName = swigName;
+      this.swigValue = swigNext++;
+    }
+
+    private ATIRE_output_format(String swigName, int swigValue) {
+      this.swigName = swigName;
+      this.swigValue = swigValue;
+      swigNext = swigValue+1;
+    }
+
+    private ATIRE_output_format(String swigName, ATIRE_output_format swigEnum) {
+      this.swigName = swigName;
+      this.swigValue = swigEnum.swigValue;
+      swigNext = this.swigValue+1;
+    }
+
+    private static ATIRE_output_format[] swigValues = { XML, JSON };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
+  }
 
 }

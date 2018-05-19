@@ -22,9 +22,8 @@ public class AntelopeJNI {
   public final static native String ATIRE_API_remote_get_document(long jarg1, ATIRE_API_remote jarg1_, long jarg2, long jarg3);
   public final static native String ATIRE_API_remote_send_command(long jarg1, ATIRE_API_remote jarg1_, String jarg2);
   public final static native void ATIRE_API_remote_exit(long jarg1, ATIRE_API_remote jarg1_);
-  public final static native int ATIRE_API_server_CHANNEL_FILE_get();
-  public final static native int ATIRE_API_server_CHANNEL_SOCKET_get();
-  public final static native int ATIRE_API_server_CHANNEL_STREAM_get();
+  public final static native int ATIRE_API_server_XML_get();
+  public final static native int ATIRE_API_server_JSON_get();
   public final static native long new_ATIRE_API_server();
   public final static native void delete_ATIRE_API_server(long jarg1);
   public final static native void ATIRE_API_server_initialize(long jarg1, ATIRE_API_server jarg1_);
@@ -52,6 +51,7 @@ public class AntelopeJNI {
   public final static native int ATIRE_API_server_has_new_command(long jarg1, ATIRE_API_server jarg1_);
   public final static native void ATIRE_API_server_insert_command(long jarg1, ATIRE_API_server jarg1_, String jarg2);
   public final static native void ATIRE_API_server_set_outchannel(long jarg1, ATIRE_API_server jarg1_, int jarg2);
+  public final static native String ATIRE_API_server_get_outchannel_content(long jarg1, ATIRE_API_server jarg1_);
   public final static native int ATIRE_API_server_search__SWIG_0(long jarg1, ATIRE_API_server jarg1_, String jarg2);
   public final static native int ATIRE_API_server_search__SWIG_1(long jarg1, ATIRE_API_server jarg1_);
   public final static native void ATIRE_API_server_goto_result(long jarg1, ATIRE_API_server jarg1_, int jarg2);
@@ -63,6 +63,7 @@ public class AntelopeJNI {
   public final static native String ATIRE_API_server_load_document(long jarg1, ATIRE_API_server jarg1_);
   public final static native String ATIRE_API_server_get_document(long jarg1, ATIRE_API_server jarg1_, int jarg2);
   public final static native String ATIRE_API_server_get_current_document(long jarg1, ATIRE_API_server jarg1_);
+  public final static native void ATIRE_API_server_set_output_format(long jarg1, ATIRE_API_server jarg1_, int jarg2);
   public final static native void ATIRE_indexer_EMPTY_DOCUMENT_CONTENT_set(String jarg1);
   public final static native String ATIRE_indexer_EMPTY_DOCUMENT_CONTENT_get();
   public final static native void ATIRE_indexer_EMPTY_DOCUMENT_FILENAME_set(String jarg1);

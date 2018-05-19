@@ -100,8 +100,10 @@ public class Antelope {
         return server.get_document(docid);
     }
 
-    public void sendCommand(String cmd) {
+    public String sendCommand(String cmd) {
         server.insert_command(cmd);
         server.process_command();
+
+        return server.get_outchannel_content();
     }
 }
