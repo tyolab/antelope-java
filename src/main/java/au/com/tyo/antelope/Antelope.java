@@ -3,10 +3,11 @@ package au.com.tyo.antelope;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import au.com.tyo.antelope.jni.ATIRE_API_server;
 
-public class Antelope {
+public class Antelope extends AntelopeClient {
 
     private String opts;
 
@@ -16,6 +17,8 @@ public class Antelope {
 
     public Antelope(String opts) {
         this.opts = opts;
+
+        server = new ATIRE_API_server();
 
         server.set_params(opts);
         server.initialize();
@@ -42,11 +45,11 @@ public class Antelope {
         server.start();
     }
 
-    public String search(String query, boolean loadContent) {
-        return search(query, 1, 20, true, loadContent);
+    public List<AntelopeDoc> search(String query, boolean loadContent) throws Exception {
+        return search(query, 1, 20, loadContent);
     }
 
-    public String search(String query, int page, int size, boolean needdata, boolean loadContent) {
+    public List<AntelopeDoc> search(String query, int page, int size, boolean needdata) throws Exception {
         if (page < 1) page = 1;
         int index = (page - 1) * size;
 
@@ -57,39 +60,11 @@ public class Antelope {
 
         // server.result_to_outchannel();
         AntelopeSearchResult searchResult = new AntelopeSearchResult(hits, page, size, server.get_search_time());
-        String results = null;
+        List<AntelopeDoc> results = search(query, page, size);
 
-        if (needdata) {
-            int ret = server.next_result();
-            int count = 0;
-            while (ret > 0 && count < size) {
-                String hit = server.result_to_json();
-
-                AntelopeDoc obj;
-                try {
-                    obj = gson.fromJson(hit, AntelopeDoc.class);
-                }
-                catch (Exception err) {
-                    obj = null;
-                }
-
-                if (null != obj) {
-                    if (searchResult.list == null)
-                        searchResult.list = new ArrayList();
-
-                    if (loadContent) {
-                        String doc = server.load_document();
-                        obj.doc = (doc);
-                    }
-
-                    searchResult.list.add(obj);
-                }
-
-                ret = server.next_result();
-
-                ++count;
-            }
-        }
+        if (results != null && needdata)
+            for (AntelopeDoc antelopeDoc : results)
+                antelopeDoc.doc = loadDocument((int) antelopeDoc.docid);
 
         //logger.info({query: query, index: index, page_size: size, hits: hits, size: results.list.length});
 
@@ -105,5 +80,45 @@ public class Antelope {
         server.process_command();
 
         return server.get_outchannel_content();
+    }
+
+    @Override
+    public List<AntelopeDoc> search(String query, int pageIndex, int pageSize) throws Exception {
+        List list = null;
+        AntelopeSearchResult searchResult = new AntelopeSearchResult(hits, pageIndex, pageSize, server.get_search_time());
+
+        int ret = server.next_result();
+        int count = 0;
+        if (ret > 0) {
+            list = new ArrayList();
+            while (ret > 0 && count < pageSize) {
+                String hit = server.result_to_json();
+
+                AntelopeDoc obj;
+                try {
+                    obj = gson.fromJson(hit, AntelopeDoc.class);
+                } catch (Exception err) {
+                    obj = null;
+                }
+
+                if (null != obj) {
+                    if (searchResult.list == null)
+                        searchResult.list = new ArrayList();
+
+                    searchResult.list.add(obj);
+                }
+
+                ret = server.next_result();
+
+                ++count;
+            }
+        }
+
+        return list;
+    }
+
+    @Override
+    protected String getDocumentInternal(long id) {
+        return server.get_document((int) id);
     }
 }
