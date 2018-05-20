@@ -107,7 +107,7 @@ public abstract class AntelopeClient {
     protected abstract String sendCommand(String command);
 
     public List<AntelopeDoc> listTitle(String query) {
-        ArrayList<String> list = new ArrayList<String>();
+        List<AntelopeDoc> list = new ArrayList<>();
 
         String newQuery = query;
 
@@ -126,7 +126,7 @@ public abstract class AntelopeClient {
                     while ((line = br.readLine()) != null && line.length() > 3) {
                         String[] tokens = line.substring(3).split(":");
                         if (tokens != null && tokens.length > 1) {
-                            list.add(tokens[0]);
+                            // list.add(tokens[0]);
 
                             AntelopeDoc search = new AntelopeDoc();
                             search.title = tokens[0];
@@ -138,6 +138,7 @@ public abstract class AntelopeClient {
                             }
                             search.rank = ++count;
 
+                            list.add(search);
                             results.put(tokens[0], search);
                         }
                     }
@@ -159,7 +160,7 @@ public abstract class AntelopeClient {
         return list;
     }
 
-    public List<String> search(String query) throws Exception {
+    public List<AntelopeDoc> search(String query) throws Exception {
         return search(query, 1, 10);
     }
 
@@ -240,7 +241,7 @@ public abstract class AntelopeClient {
 
         AntelopeClientRemote atire = new AntelopeClientRemote();
 
-        List<String> results = null;
+        List<AntelopeDoc> results = null;
 
         if (args.length == 0) {
             BufferedReader stdIn =
