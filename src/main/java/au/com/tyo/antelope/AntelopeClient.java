@@ -35,6 +35,7 @@ public abstract class AntelopeClient {
     private boolean needsConvertChinese;
 
     protected String preQuery;
+    private int errorCode;
 
     public AntelopeClient() {
 
@@ -50,6 +51,7 @@ public abstract class AntelopeClient {
     private void init() {
         this.needsConvertChinese = false;
         hits = 0;
+        errorCode = 404;
     }
 
     public static AntelopeClient getInstance() {
@@ -295,5 +297,13 @@ public abstract class AntelopeClient {
                 System.out.println(results.get(i));
             System.out.println("");
         }
+    }
+
+    public void clearResults() {
+        results.clear();
+    }
+
+    public int getErrorCode() {
+        return errorCode;
     }
 }
