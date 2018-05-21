@@ -26,8 +26,13 @@ public class Antelope extends AntelopeClient {
         gson = new Gson();
     }
 
-    static {
-        System.loadLibrary("antelope_jni");
+    private static boolean nativeLibraryloaded = false;
+
+    public static void loadNativeLibrary() {
+        if (!nativeLibraryloaded) {
+            System.loadLibrary("antelope_jni");
+            nativeLibraryloaded = true;
+        }
     }
 
     /**
