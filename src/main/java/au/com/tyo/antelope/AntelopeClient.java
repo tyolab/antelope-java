@@ -28,7 +28,7 @@ public abstract class AntelopeClient {
     protected byte[] buffer;
 
 
-    public static String dylibName = "atire_jni";
+    public static String dylibName = "antelope_jni";
 
     private static AntelopeClient instance;
 
@@ -41,7 +41,6 @@ public abstract class AntelopeClient {
 
         kmpSearch = new ByteArrayKMP();
         pageSize = DEFAULT_PAGE_SIZE;
-
 
         results = new HashMap<String, AntelopeDoc>();
 
